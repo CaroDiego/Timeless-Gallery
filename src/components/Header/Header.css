@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  flex-direction: column;  /* Coloca los elementos en columna */
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: black;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  border-bottom:1px solid grey;
+  padding-bottom: 10px;
+}
+
+.title {
+  margin: 0;
+  color: white;
+}
+
+.login-icon {
+  font-size: 24px;
+  color: white;
+}
+
+
