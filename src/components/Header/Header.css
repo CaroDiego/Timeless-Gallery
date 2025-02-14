@@ -5,13 +5,22 @@
   box-sizing: border-box;
 }
 
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .header {
   display: flex;
+  flex-direction: column; /* Coloca los elementos en columna */
   flex-direction: column; /* Coloca los elementos en columna */
   justify-content: center;
   align-items: center;
   padding: 10px 20px;
   background-color: black;
+  width: 100%; /* Ensure the header spans the full width */
   width: 100%; /* Ensure the header spans the full width */
 }
 
@@ -21,12 +30,13 @@
   width: 100%;
   align-items: center;
   border-bottom: 1px solid grey;
+  border-bottom: 1px solid grey;
   padding-bottom: 10px;
 }
 
 .header .title {
   margin: 0;
-  color: white;
+  color: white ;
 }
 
 .login-icon {
@@ -39,11 +49,4 @@
 
 .login-icon:hover {
   color: #ccc;
-}
-
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px; /* Adjust the gap as needed */
 }

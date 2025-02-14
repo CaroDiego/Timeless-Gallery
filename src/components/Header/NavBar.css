@@ -2,8 +2,9 @@
   width: 100%; /* Hace que ocupe todo el ancho */
   background-color: black; /* Color de fondo */
   padding: 10px 20px;
-  justify-content: space-around; /* Distribuye los enlaces de manera uniforme */
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;}
 
 .navbar ul {
   list-style: none;
