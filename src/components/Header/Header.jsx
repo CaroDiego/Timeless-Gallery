@@ -1,11 +1,13 @@
 import Navbar from "./Navbar";
 import "./Header.css";
 import { IoPerson } from "react-icons/io5";
-import SignIn from "../Login/SignIn";
+import SignUp from "../Login/SignUp";
 import LogIn from "../Login/Login";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../context/usercontext";
 
 function Header() {
+  const { user, isUserloggedIn } = useContext(UserContext);
   const [seen, setSeen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
 
@@ -26,20 +28,24 @@ function Header() {
     <>
       <header className="header">
         <div className="header-content">
-          <h1 className="title">Timeless Gallery</h1>
+          <h1 className="title">Timeless Gallery </h1>
+          {user && <h2 className="title">{user.name}</h2>}
           <button onClick={toggle} className="login-icon">
             <IoPerson />
           </button>
         </div>
         <Navbar />
       </header>
-      {seen ? (
-        isSignUp ? (
-          <SignIn toggle={toggle} toggleForm={toggleForm} />
+      {isUserloggedIn ? (
+        <div>Hola usuario</div>
+      ) : (
+        seen &&
+        (isSignUp ? (
+          <SignUp toggle={toggle} toggleForm={toggleForm} />
         ) : (
           <LogIn toggle={toggle} toggleForm={toggleForm} />
-        )
-      ) : null}
+        ))
+      )}
     </>
   );
 }

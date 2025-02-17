@@ -5,16 +5,16 @@ function Navbar() {
     <nav className="navbar">
       <ul>
         <li>
-          <a href="#home">Inicio</a>
-        </li>
-        <li>
           <a href="#explore">Explorar</a>
         </li>
         <li>
-          <a href="#about">Acerca de</a>
+          <a href="#about">My collections</a>
         </li>
         <li>
           <a href="#favourites">Favourites</a>
+        </li>
+        <li>
+          <a href="#home">Perfil</a>
         </li>
       </ul>
     </nav>

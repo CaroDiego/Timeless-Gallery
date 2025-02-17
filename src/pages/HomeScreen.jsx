@@ -1,9 +1,10 @@
-import { Header, NavBar } from "../components";
+import { Header } from "../components";
 
 function HomeScreen() {
   return (
     <div>
       <Header />
+
     </div>
   );
 }

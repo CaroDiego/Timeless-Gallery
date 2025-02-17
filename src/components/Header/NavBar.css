@@ -4,7 +4,8 @@
   padding: 10px 20px;
   display: flex;
   justify-content: center;
-  align-items: center;}
+  align-items: center;
+}
 
 .navbar ul {
   list-style: none;
@@ -15,7 +16,6 @@
 
 .navbar li {
   margin: 0 10px;
-
 }
 
 .navbar a {

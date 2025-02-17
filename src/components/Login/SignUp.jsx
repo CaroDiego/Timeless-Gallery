@@ -1,10 +1,13 @@
-import "./SignIn.css";
+import "./SignUp.css";
 import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
 import { IoClose, IoEye, IoEyeOff, IoPerson } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoIosLock, IoIosMail } from "react-icons/io";
+import { UserContext } from "../../context/usercontext";
 
-function SignIn(props) {
+function SignUp(props) {
+  const { signUp, authError, setAuthError, isUserloggedIn } =
+    useContext(UserContext);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -23,11 +26,28 @@ function SignIn(props) {
     setPassword(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const user = {
+      email,
+      name,
+      password,
+    };
+    signUp(user);
+    if (isUserloggedIn) {
+      closePopup();
+    }
+  };
+
+  const closePopup = () => {
+    props.toggle();
+    setAuthError(null);
+  };
 
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === "Escape") {
-        props.toggle();
+        closePopup();
       }
     };
     window.addEventListener("keydown", handleKeyPress);
@@ -39,11 +59,12 @@ function SignIn(props) {
   return (
     <div className="popup">
       <div className="form-container">
-        <button className="close-button" onClick={props.toggle}>
+        {authError && <p className="error">{authError}</p>}
+        <button className="close-button" onClick={closePopup}>
           <IoClose />
         </button>
-        <h2 className="title">Sign In</h2>
-        <form className="form">
+        <h2 className="title">Sign Up</h2>
+        <form className="form" onSubmit={handleSubmit}>
           <div className="email-container">
             <IoIosMail className="email-icon" />
             <input
@@ -112,4 +133,4 @@ function SignIn(props) {
   );
 }
 
-export default SignIn;
+export default SignUp;

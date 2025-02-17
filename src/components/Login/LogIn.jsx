@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoClose, IoEye, IoEyeOff } from "react-icons/io5";
 import { IoIosLock, IoIosMail } from "react-icons/io";
 import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
-import SignIn from "./SignIn";
+import { UserContext } from "../../context/usercontext";
 
 function LogIn(props) {
+  const { logIn, authError, setAuthError, isUserloggedIn } =
+    useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,10 +21,30 @@ function LogIn(props) {
     setPassword(e.target.value);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const user = {
+      email,
+      password,
+    };
+    await logIn(user);
+  };
+
+  const closePopup = () => {
+    props.toggle();
+    setAuthError(null);
+  };
+
+  useEffect(() => {
+    if (isUserloggedIn) {
+      closePopup();
+    }
+  }, [isUserloggedIn]);
+
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === "Escape") {
-        props.toggle();
+        closePopup();
       }
     };
     window.addEventListener("keydown", handleKeyPress);
@@ -33,11 +56,12 @@ function LogIn(props) {
   return (
     <div className="popup">
       <div className="form-container">
-        <button className="close-button" onClick={props.toggle}>
+        {authError && <p className="error">{authError}</p>}
+        <button className="close-button" onClick={closePopup}>
           <IoClose />
         </button>
         <h2 className="title">Log In</h2>
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <div className="email-container">
             <IoIosMail className="email-icon" />
             <input
