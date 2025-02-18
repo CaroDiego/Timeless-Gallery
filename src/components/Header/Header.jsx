@@ -5,7 +5,7 @@ import SignUp from "../User/SignUp";
 import LogIn from "../User/Login";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/usercontext";
-import { Dropdown, IconButton } from "rsuite";
+import UserLogged from "../User/UserLogged";
 
 function Header() {
   const { user, isUserloggedIn } = useContext(UserContext);
@@ -21,28 +21,6 @@ function Header() {
     setIsSignUp(!isSignUp);
   }
 
-  const renderIconButton = (props, ref) => {
-    return (
-      <IconButton
-        {...props}
-        ref={ref}
-        icon={<IoPerson />}
-        className="login-icon"
-      />
-    );
-  };
-
-  const UserDropdown = () => (
-    <div className="user-dropdown-container">
-      <Dropdown renderToggle={renderIconButton}>
-        <div className="dropdown-menu">
-          <Dropdown.Item className="dropdown-item">Profile</Dropdown.Item>
-          <Dropdown.Item className="dropdown-item">Log Out</Dropdown.Item>
-        </div>
-      </Dropdown>
-    </div>
-  );
-
   return (
     <>
       <header className="header">
@@ -50,7 +28,7 @@ function Header() {
           <h1 className="title">Timeless Gallery</h1>
           {user && <h2 className="title">{user.name}</h2>}
           {isUserloggedIn ? (
-            <UserDropdown />
+            <UserLogged />
           ) : (
             <button onClick={toggle} className="login-icon">
               <IoPerson />
